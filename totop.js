@@ -111,7 +111,7 @@ var qii404 = {
             //         "event": {
             //             "answerTime": 10,
             //             "correctOption": 0,
-            //             "desc": "4.北京在哪一年申办奥运会成功的？",
+            //             "desc": "4.北京在哪一年举办的奥运会？",
             //             "displayOrder": 3,
             //             "liveId": 95,
             //             "options": "[\"2001\",\"2002\",\"2008\"]",
