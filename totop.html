@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>冲顶小助手</title>
+    <link rel="stylesheet" type="text/css" href="totop.css">
+    <link rel="stylesheet" type="text/css" href="bootstrap.css">
+</head>
+<body>
+
+<div class="alert alert-info">冲顶小助手，该程序比APP端展示题目早5-10秒钟，所以请提前关注题目变化，祝你早日冲顶~</div>
+
+<h4 id="question">即时同步题目中，题目还未出现，请等待主持人宣布开始，稍等待...</h4>
+
+<p id="items"></p>
+
+<div class="alert alert-warning" role="alert">相关性分数（如果题目中含有‘<b>不是</b>’等否定词，一般选择频率<b>最低</b>的即可，反之选最高），结果不准确，还是要参考下面实时搜索结果</div>
+
+<ul id="result"></ul>
+
+<p>
+    <button id="stop" class="btn btn-primary">暂停一下，我看看结果</button>&nbsp;
+    <button id="start" class="btn btn-primary">继续自动刷新题目</button>
+</p>
+
+<iframe id="iframe"></iframe>
+
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="totop.js"></script>
+
+</body>
+</html>

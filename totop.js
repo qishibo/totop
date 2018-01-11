@@ -9,11 +9,6 @@
 
 var qii404 = {
     /**
-     * 页面html
-     */
-    initHtml: '<h2 style="color:grey;">冲顶小助手，如果不需要，禁用该拓展即可</h2><h2 id="question">题目还未出现，稍等待...</h2><p id="items"></p><h4>相关性分析(根据搜索结果关键词，如果题目中含有‘不是’等否定词，一般选择频率最低的即可)<br></h4><div id="result"></div><p><button id="stop">稍等片刻，我看看结果</button>&nbsp;<button id="start">继续自动刷新题目</button></p><iframe id="iframe"></iframe>',
-
-    /**
      * 题目url
      */
     questionUrl: 'http://htpmsg.jiecaojingxuan.com/msg/current',
@@ -44,6 +39,11 @@ var qii404 = {
     interval: 2000,
 
     /**
+     * 选项字母
+     */
+    choice: ['A', 'B', 'C', 'D', 'E'],
+
+    /**
      * 定时器
      */
     timer: null,
@@ -52,17 +52,24 @@ var qii404 = {
      * 初始化
      */
     init: function() {
-
-        $('body').html(this.initHtml);
-
         this.bindButton();
         this.runTimer();
+    },
+
+    /**
+     * 清空
+     */
+    clearAll: function() {
+        this.question = '';
+        this.answers = [];
+        this.analysisResults = {};
     },
 
     /**
      * 启动计时器
      */
     runTimer: function() {
+        this.getQuestion();
         var this_ = this;
 
         this.timer = setInterval(function() {
@@ -78,23 +85,24 @@ var qii404 = {
         var this_ = this;
 
         $('#stop').on('click', function() {
-            if (this_.timer == null) return;
             clearInterval(this_.timer);
-            this_.timer = null;
         });
 
         $('#start').on('click', function() {
-            if (this_.timer != null) return;
+            clearInterval(this_.timer);
             this_.runTimer();
-        })
+        });
     },
 
     /**
      * 获取问题 && 后续流程
      */
     getQuestion: function() {
+        this.clearAll();
         var this_ = this;
+
         $.get(this.questionUrl, function(data) {
+            console.log(data);
 
             // data = {
             //     "code": 0,
@@ -140,10 +148,10 @@ var qii404 = {
      */
     renderOptions: function() {
         var html = '<ul>';
-        var spell = ['A', 'B', 'C', 'D'];
+        var this_ = this;
 
         this.answers.forEach(function(item, i) {
-            html += '<li>' + spell[i] + '、' + item + '</li>';
+            html += '<li>' + this_.choice[i] + '、' + item + '</li>';
         });
 
         html += '</ul>';
@@ -210,9 +218,11 @@ var qii404 = {
      */
     renderAnalysis: function() {
         var options = '';
+        var index = 0;
 
         for (var i in this.analysisResults) {
-            options += i + ': ' + this.analysisResults[i] + '<br>';
+            options += this.choice[index] + '、' + i + ': <span class="label label-default">' + this.analysisResults[i] + '</span><br>';
+            index++;
         }
 
         $('#result').html(options);
