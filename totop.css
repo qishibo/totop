@@ -1,0 +1,24 @@
+body{
+    text-align: center;
+}
+ul li{
+    list-style: none;
+    font-size: 160%;
+}
+
+#result{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 120%;
+
+}
+
+h4{
+    background: lightgrey;
+    padding: 3px 0 3px 0;
+}
+
+#iframe{
+    height: 1800px;
+    width: 100%;
+}

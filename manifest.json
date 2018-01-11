@@ -1,0 +1,24 @@
+{
+    "name": "冲顶小助手",
+    "description": "冲顶小助手，不保证题目一定正确哦",
+    "version": "0.0.1",
+    "manifest_version": 2,
+    "permissions" : ["contextMenus", "tabs"],
+    "content_scripts":[{
+        "matches":["http://*/*", "http://*/", "https://*/*", "https://*/"],
+        "js":["jquery.js", "totop.js"],
+        "css":["totop.css"]
+    }],
+    "icons": {
+      "16": "16.png",
+      "48": "48.png",
+      "128": "128.png"
+    },
+    "browser_action": {
+        "default_icon": {
+            "16": "16.png",
+            "48": "48.png",
+            "128": "128.png"
+        }
+    }
+}
