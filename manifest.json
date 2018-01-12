@@ -1,7 +1,7 @@
 {
     "name": "冲顶大会小助手",
     "description": "冲顶小助手，提前10秒知道题目，祝你冲顶成功~",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "manifest_version": 2,
     "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
     "permissions" : ["tabs"],
