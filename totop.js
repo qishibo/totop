@@ -49,6 +49,11 @@ var qii404 = {
     timer: null,
 
     /**
+     * 计数器
+     */
+    counter: 0,
+
+    /**
      * 初始化
      */
     init: function() {
@@ -86,6 +91,7 @@ var qii404 = {
 
         $('#stop').on('click', function() {
             clearInterval(this_.timer);
+            this_.renderCounter('stop');
         });
 
         $('#start').on('click', function() {
@@ -99,6 +105,7 @@ var qii404 = {
      */
     getQuestion: function() {
         this.clearAll();
+        this.renderCounter();
         var this_ = this;
 
         $.get(this.questionUrl, function(data) {
@@ -141,6 +148,14 @@ var qii404 = {
             this_.analysisQuestion(this_.question);
             this_.renderSearchPage(this_.question);
         });
+    },
+
+    /**
+     * 渲染计数器
+     */
+    renderCounter: function(type) {
+        $('#status').html(type == undefined ? '刷新中': '已停止');
+        $('#counter').html(type == undefined ? ++this.counter : this.counter);
     },
 
     /**

@@ -8,9 +8,9 @@
 </head>
 <body>
 
-<div class="alert alert-info">冲顶小助手，该程序比APP端展示题目早5-10秒钟，所以请提前关注题目变化，祝你早日冲顶~</div>
+<div class="alert alert-info">冲顶小助手，该程序比APP端展示题目早5-10秒钟，所以请<b>提前</b>关注题目变化，祝你早日冲顶~ <small><a href="desc.html" class="label label-danger" target="_blank">使用说明</a></small></div>
 
-<h4 id="question">即时同步题目中，题目还未出现，请等待主持人宣布开始，稍等待...</h4>
+<h4 id="question">实时同步题目中，题目还未出现，请等待主持人宣布开始...一般在正式答题前10秒会自动出现题目</h4>
 
 <p id="items"></p>
 
@@ -21,6 +21,7 @@
 <p>
     <button id="stop" class="btn btn-primary">暂停一下，我看看结果</button>&nbsp;
     <button id="start" class="btn btn-primary">继续自动刷新题目</button>
+    <small><span id="status">刷新中</span>...共计<span id="counter">0</span>次，如果页面没有变化说明没有新题目</small>
 </p>
 
 <iframe id="iframe"></iframe>
