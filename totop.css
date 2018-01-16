@@ -1,19 +1,21 @@
 body{
     text-align: center !important;
 }
+
 ul li{
     list-style: none;
     font-size: 120%;
 }
 
-#result{
-    margin-top: 20px;
-    margin-bottom: 20px;
-    font-size: 120%;
-
-}
-
 #iframe{
     height: 1800px;
     width: 100%;
+}
+
+#question-container{
+    margin-bottom: 20px;
+}
+
+#control-button{
+    margin-bottom: 20px;
 }

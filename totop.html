@@ -8,25 +8,43 @@
 </head>
 <body>
 
-<div class="alert alert-info">冲顶小助手，该程序比APP端展示题目早5-10秒钟，所以请<b>提前</b>关注题目变化，祝你早日冲顶~ <small><a href="desc.html" class="label label-danger" target="_blank">使用必读</a></small></div>
-
-<h4 id="question"><b>实时同步题目中，题目还未出现，请等待主持人宣布开始...一般在正式答题前10秒会自动出现题目</b></h4>
-
-<p id="items"></p>
-
-<div class="alert alert-warning" role="alert">相关性分数（如果题目中含有‘<b>不是</b>’等否定词，一般选择频率<b>最低</b>的即可，反之选最高），结果不准确，还是要参考下面实时搜索结果</div>
-
-<ul id="result"></ul>
+<div class="alert alert-info">答题小助手，支持市面上大多数答题APP，祝你早日冲顶~ <small><a href="desc.html" class="label label-danger" target="_blank">使用必读</a></small></div>
 
 <p>
-    <button id="stop" class="btn btn-primary">暂停一下，我看看结果</button>&nbsp;
-    <button id="start" class="btn btn-primary">继续自动刷新题目</button>
-    <small><span id="status">刷新中</span>...共计<span id="counter">0</span>次，如果页面没有变化说明没有新题目</small>
+    <select id="app-type" style="width: 20%" class="form-control btn btn-success">
+        <option value="">请选择答题APP</option>
+        <option value="cddh">冲顶大会</option>
+        <option value="xigua">西瓜百万英雄</option>
+        <option value="huajiao">花椒百万赢家</option>
+        <option value="zscr">芝士超人</option>
+    </select>
 </p>
+
+<div id="question-container"></div>
+
+<div id="control-button">
+    <button id="stop" class="btn btn-info">暂停一下，我看看结果</button>&nbsp;
+    <button id="start" class="btn btn-info">继续自动刷新题目</button>
+    <small><span id="status">刷新中</span>...共计<span id="counter">0</span>次，如果页面没有变化说明没有新题目</small>
+</div>
 
 <iframe id="iframe"></iframe>
 
+<script type="text/template" id="question-template">
+    <div>
+        <h4 class="alert alert-info">{{title}}</h4>
+        <ul style="padding: 0px;">
+            {{#answers}}
+                <li>{{.}}</li>
+            {{/answers}}
+        </ul>
+        <span class="label label-success">推荐答案： {{result}}</span>
+    </div>
+</script>
+
 <script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="bootstrap.js"></script>
+<script type="text/javascript" src="mustache.js"></script>
 <script type="text/javascript" src="totop.js"></script>
 
 </body>

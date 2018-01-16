@@ -1,32 +1,23 @@
 /**
  * Created on : 2018-01-11 18:31:19 星期四
  * Encoding   : UTF-8
- * Description: 冲顶小助手，哈哈哈哈哈哈
+ * Description: 答题小助手，哈哈哈哈哈哈
  *
  * @author    @qii404 <qii404.me>
  * @copyright qii404.me.
  */
 
 var qii404 = {
+
     /**
      * 题目url
      */
-    questionUrl: 'http://htpmsg.jiecaojingxuan.com/msg/current',
+    questionUrl: 'http://wd.sa.sogou.com/api/ans?key=',
 
     /**
      * 搜索链接
      */
     searchUrl: 'http://www.baidu.com/s?wd=',
-
-    /**
-     * 题干
-     */
-    question: '',
-
-    /**
-     * 答案选项
-     */
-    answers: [],
 
     /**
      * 分析结果
@@ -36,12 +27,8 @@ var qii404 = {
     /**
      * 轮询时间
      */
-    interval: 2000,
+    interval: 500,
 
-    /**
-     * 选项字母
-     */
-    choice: ['A', 'B', 'C', 'D', 'E'],
 
     /**
      * 定时器
@@ -54,20 +41,39 @@ var qii404 = {
     counter: 0,
 
     /**
+     * 当前应用
+     */
+    preApp: 'cddh',
+
+    /**
      * 初始化
      */
     init: function() {
+        this.bindChangeApp();
         this.bindButton();
         this.runTimer();
     },
 
     /**
-     * 清空
+     * 绑定app切换
      */
-    clearAll: function() {
-        this.question = '';
-        this.answers = [];
-        this.analysisResults = {};
+    bindChangeApp: function() {
+        var this_ = this;
+
+        $('#app-type').change(function(e) {
+
+            var val = $(this).children('option:selected').val();
+
+            if (!val) {
+                clearInterval(this_.timer)
+                return;
+            }
+
+            this_.preApp = val;
+
+            clearInterval(this_.timer);
+            this_.runTimer();
+        });
     },
 
     /**
@@ -104,50 +110,27 @@ var qii404 = {
      * 获取问题 && 后续流程
      */
     getQuestion: function() {
-        this.clearAll();
         this.renderCounter();
         var this_ = this;
 
-        $.get(this.questionUrl, function(data) {
+        $.get(this.getQuestionUrl(), function(data) {
             console.log(data);
 
-            // data = {
-            //     "code": 0,
-            //     "msg": "成功",
-            //     "data": {
-            //         "event": {
-            //             "answerTime": 10,
-            //             "correctOption": 0,
-            //             "desc": "4.北京在哪一年举办的奥运会？",
-            //             "displayOrder": 3,
-            //             "liveId": 95,
-            //             "options": "[\"2001\",\"2002\",\"2008\"]",
-            //             "questionId": 1093,
-            //             "showTime": 1515661495748,
-            //             "stats": [
-            //                 175971,
-            //                 65928,
-            //                 85861
-            //             ],
-            //             "status": 2,
-            //             "type": "showAnswer"
-            //         },
-            //         "type": "showAnswer"
-            //     }
-            // };
+            var data = JSON.parse(data.result[data.result.length - 1]);
+            var template = $('#question-template').html();
 
-            if(!(data && data.data && data.data.event && data.data.event.desc)){
-               return;
-            }
+            Mustache.parse(template);
+            $('#question-container').html(Mustache.render(template, data));
 
-            this_.question = data.data.event.desc;
-            this_.answers = eval(data.data.event.options);
-
-            this_.renderOptions();
-
-            this_.analysisQuestion(this_.question);
-            this_.renderSearchPage(this_.question);
+            this_.renderSearchPage(data.title);
         });
+    },
+
+    /**
+     * 获取题目url
+     */
+    getQuestionUrl: function() {
+        return this.questionUrl + this.preApp;
     },
 
     /**
@@ -159,30 +142,10 @@ var qii404 = {
     },
 
     /**
-     * 渲染选项
-     */
-    renderOptions: function() {
-        var html = '<ul>';
-        var this_ = this;
-
-        this.answers.forEach(function(item, i) {
-            html += '<li>' + this_.choice[i] + '、' + item + '</li>';
-        });
-
-        html += '</ul>';
-
-        $('#items').html(html);
-        $('#question').html(this.question);
-    },
-
-    /**
      * 渲染下部搜索页面
      */
-    renderSearchPage: function() {
-        var url = this.getSearchUrl(this.question);
-
-        $('#iframe').remove();
-        $("<iframe id='iframe' src='" + url + "'></iframe>").appendTo('body');
+    renderSearchPage: function(question) {
+        $('#iframe').attr('src', this.getSearchUrl(question));
     },
 
     /**
