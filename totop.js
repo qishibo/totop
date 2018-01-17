@@ -12,7 +12,8 @@ var qii404 = {
     /**
      * 题目url
      */
-    questionUrl: 'http://wd.sa.sogou.com/api/ans?key=',
+    // questionUrl: 'http://wd.sa.sogou.com/api/ans?key=',
+    questionUrl: 'http://140.143.49.31/api/ans2?wdcallback=xx&key=',
 
     /**
      * 搜索链接
@@ -119,6 +120,7 @@ var qii404 = {
         var this_ = this;
 
         $.get(this.getQuestionUrl(), function(data) {
+            data = JSON.parse(data.slice(3,-1));
             console.log(data);
 
             var data = JSON.parse(data.result[data.result.length - 1]);

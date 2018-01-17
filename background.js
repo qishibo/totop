@@ -9,7 +9,7 @@ var headerOptions = {
 
 chrome.webRequest.onBeforeSendHeaders.addListener(function(details)
 {
-    if (details.type === 'xmlhttprequest' &&  (details.url.indexOf('http://wd.sa.sogou.com/api/ans') !== -1)) {
+    if (details.type === 'xmlhttprequest' &&  (details.url.indexOf('http://140.143.49.31/api/ans') !== -1)) {
         var changed = {};
 
         for (var i = 0; i < details.requestHeaders.length; i++) {
