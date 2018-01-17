@@ -1,12 +1,13 @@
 
 var headerOptions = {
     'Referer': 'http://wd.sa.sogou.com',
-    'User-Agent': 'User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 11_2_2 like Mac OS X) AppleWebKit/604.4.7 (KHTML, like Gecko) Mobile/15C202 Sogousearch/Ios/5.9.7',
+    // 'User-Agent': 'User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 11_2_2 like Mac OS X) AppleWebKit/604.4.7 (KHTML, like Gecko) Mobile/15C202 Sogousearch/Ios/5.9.7',
+    'User-Agent': 'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36 Sogousearch/Ios/5.9.7',
     'Cookie': 'dt_ssuid=' + Math.floor(100000 * Math.random())
 };
 
 
-chrome.webRequest.onBeforeSendHeaders.addListener(function(details) 
+chrome.webRequest.onBeforeSendHeaders.addListener(function(details)
 {
     if (details.type === 'xmlhttprequest' &&  (details.url.indexOf('http://wd.sa.sogou.com/api/ans') !== -1)) {
         var changed = {};

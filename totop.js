@@ -46,11 +46,16 @@ var qii404 = {
     preApp: 'cddh',
 
     /**
+     * 当前题目
+     */
+    question: '',
+
+    /**
      * 初始化
      */
     init: function() {
         this.bindChangeApp();
-        this.bindButton();
+        // this.bindButton();
         this.runTimer();
     },
 
@@ -117,6 +122,12 @@ var qii404 = {
             console.log(data);
 
             var data = JSON.parse(data.result[data.result.length - 1]);
+
+            if (!(data.title && data.title != this_.question)) {
+                return;
+            }
+
+            this_.question = data.title;
             var template = $('#question-template').html();
 
             Mustache.parse(template);

@@ -23,9 +23,9 @@
 <div id="question-container"></div>
 
 <div id="control-button">
-    <button id="stop" class="btn btn-info">暂停一下，我看看结果</button>&nbsp;
-    <button id="start" class="btn btn-info">继续自动刷新题目</button>
-    <small><span id="status">刷新中</span>...共计<span id="counter">0</span>次，如果页面没有变化说明没有新题目</small>
+    <button id="stop" class="btn btn-info hidden">暂停一下，我看看结果</button>&nbsp;
+    <button id="start" class="btn btn-info hidden">继续自动刷新题目</button>
+    <small><span id="status">刷新中</span>...共计<span id="counter">0</span>次，如果页面没有变化说明新题目还未到达</small>
 </div>
 
 <iframe id="iframe"></iframe>
@@ -38,7 +38,7 @@
                 <li>{{.}}</li>
             {{/answers}}
         </ul>
-        <span class="label label-success">推荐答案： {{result}}</span>
+        <span id="recomment-result" class="label label-success">推荐答案： {{result}}</span>
     </div>
 </script>
 
