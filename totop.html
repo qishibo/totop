@@ -35,7 +35,7 @@
         <h4 class="alert alert-info">{{title}}</h4>
         <ul style="padding: 0px;">
             {{#answers}}
-                <li>{{.}}</li>
+                <li>{{value}}  <small><span id="search-score-{{index}}" class="label label-default"></span></small></li>
             {{/answers}}
         </ul>
         <span id="recomment-result" class="label label-success">推荐答案： {{result}}</span>

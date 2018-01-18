@@ -52,6 +52,11 @@ var qii404 = {
     question: '',
 
     /**
+     * 选项
+     */
+    answers: [],
+
+    /**
      * 初始化
      */
     init: function() {
@@ -129,14 +134,37 @@ var qii404 = {
                 return;
             }
 
+            data = this_.formatData(data);
+
             this_.question = data.title;
-            var template = $('#question-template').html();
+            this_.answers = data.answers;
 
-            Mustache.parse(template);
-            $('#question-container').html(Mustache.render(template, data));
-
-            this_.renderSearchPage(data.title);
+            this_.renderPage(data);
+            this_.analysisQuestion();
         });
+    },
+
+    /**
+     * 数据格式处理
+     */
+    formatData: function(data) {
+        for (var i = 0; i < data.answers.length; i++) {
+            data.answers[i] = {index: i, value: data.answers[i]}
+        }
+
+        return data;
+    },
+
+    /**
+     * 渲染页面
+     */
+    renderPage: function(data) {
+        var template = $('#question-template').html();
+
+        Mustache.parse(template);
+        $('#question-container').html(Mustache.render(template, data));
+
+        this.renderSearchPage(data.title);
     },
 
     /**
@@ -164,8 +192,21 @@ var qii404 = {
     /**
      * 分析题干
      */
-    analysisQuestion: function(question) {
-        this.search(question);
+    analysisQuestion: function() {
+        var this_ = this;
+
+        for (var i = 0; i < this.answers.length; i++) {
+            var url = this.getSearchUrl(this.question, this.answers[i].value);
+
+            ~(function(url, j) {
+                $.get(url, function(html) {
+                    var match = html.match(/百度为您找到相关结果约([\d|,]+)个/);
+                    $('#search-score-' + j).html(match[1] ? match[1] : 0);
+
+                    url = j = null;
+                });
+            })(url, i);
+        }
     },
 
     /**
@@ -185,8 +226,9 @@ var qii404 = {
      * 获取搜索url
      *
      */
-    getSearchUrl: function(question) {
-        return this.searchUrl + question.substring(question.indexOf('.') + 1);
+    getSearchUrl: function(question, answer) {
+        var suffix = answer ? (' ' + answer) : '';
+        return this.searchUrl + question.substring(question.indexOf('.') + 1) + suffix;
     },
 
     /**
