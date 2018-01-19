@@ -190,6 +190,9 @@ var qii404 = {
         var this_ = this;
 
         $.get(this.getSearchUrl(this.question), function(html) {
+
+            html = html.replace(/<\/?.+?>/g, '').replace(/\s/g, '');
+
             for (var i = 0; i < this_.answers.length; i++) {
                 var matches = html.match(new RegExp(this_.answers[i].value, 'ig'));
                 var num = matches ? matches.length : 0;
