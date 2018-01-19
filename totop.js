@@ -164,6 +164,7 @@ var qii404 = {
         Mustache.parse(template);
         $('#question-container').html(Mustache.render(template, data));
 
+        this.analysisSingleSearch();
         this.renderSearchPage(data.title);
     },
 
@@ -180,6 +181,22 @@ var qii404 = {
     renderCounter: function(type) {
         $('#status').html(type == undefined ? '刷新中': '已停止');
         $('#counter').html(type == undefined ? ++this.counter : this.counter);
+    },
+
+    /**
+     * 分析单页搜索结果
+     */
+    analysisSingleSearch: function() {
+        var this_ = this;
+
+        $.get(this.getSearchUrl(this.question), function(html) {
+            for (var i = 0; i < this_.answers.length; i++) {
+                var matches = html.match(new RegExp(this_.answers[i].value, 'ig'));
+                var num = matches ? matches.length : 0;
+
+                $('#search-score-' + i).html(num);
+            }
+        });
     },
 
     /**
@@ -201,7 +218,7 @@ var qii404 = {
             ~(function(url, j) {
                 $.get(url, function(html) {
                     var match = html.match(/百度为您找到相关结果约([\d|,]+)个/);
-                    $('#search-score-' + j).html(match[1] ? match[1] : 0);
+                    $('#total-score-' + j).html(match[1] ? match[1] : 0);
 
                     url = j = null;
                 });
