@@ -7,6 +7,21 @@ ul li{
     font-size: 120%;
 }
 
+#answer-table{
+    border-collapse: collapse;
+    margin: 10px auto;
+}
+
+#answer-table td, #answer-table th{
+    padding: 1px;
+    text-align: right;
+    border: 1px solid grey;
+}
+
+#answer-table th{
+    padding: 4px;
+}
+
 #iframe{
     height: 1800px;
     width: 100%;

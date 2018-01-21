@@ -33,7 +33,17 @@
 <script type="text/template" id="question-template">
     <div>
         <h4 class="alert alert-info">{{title}}</h4>
-        <ul style="padding: 0px;">
+        <table id="answer-table">
+            <tr><th>选项</th><th>百度搜索结果总数</th><th>搜索首页出现次数</th></tr>
+            {{#answers}}
+            <tr>
+                <td>{{value}}</td>
+                <td><span id="total-score-{{index}}" class="label label-default"></span></td>
+                <td><span id="search-score-{{index}}" class="label label-default"></span></td>
+            </tr>
+            {{/answers}}
+        </table>
+<!--         <ul style="padding: 0px;">
             {{#answers}}
                 <li>
                     {{value}}
@@ -43,7 +53,7 @@
                     </small>
                 </li>
             {{/answers}}
-        </ul>
+        </ul> -->
         <span id="recomment-result" class="label label-success">推荐答案： {{result}}</span>
     </div>
 </script>
