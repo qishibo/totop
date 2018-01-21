@@ -191,15 +191,32 @@ var qii404 = {
 
         $.get(this.getSearchUrl(this.question), function(html) {
 
-            html = html.replace(/<\/?.+?>/g, '').replace(/\s/g, '');
+            html = this_.trimSymble(this_.resolveHtml(html));
 
             for (var i = 0; i < this_.answers.length; i++) {
-                var matches = html.match(new RegExp(this_.answers[i].value, 'ig'));
+                var matches = html.match(new RegExp(this_.trimSymble(this_.answers[i].value), 'ig'));
                 var num = matches ? matches.length : 0;
 
                 $('#search-score-' + i).html(num);
             }
         });
+    },
+
+    /**
+     * 处理html文本
+     */
+    resolveHtml: function(html) {
+        html = html.replace(/<script[\s\S]*?<\/script>/ig, '');
+        html = html.replace(/<style[\s\S]*?<\/style>/ig, '');
+
+        return html.replace(/<\/?[\s\S]+?>/g, '');
+    },
+
+    /**
+     * 去除标点符号
+     */
+    trimSymble: function(string) {
+        return string.replace(/\s|，|,|。|\.|·|《|》|<|>|-|=/g, '');
     },
 
     /**
