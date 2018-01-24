@@ -34,12 +34,13 @@
     <div>
         <h4 class="alert alert-info">{{title}}</h4>
         <table id="answer-table">
-            <tr><th>选项</th><th>百度搜索结果总数</th><th>搜索首页出现次数</th></tr>
+            <tr><th>选项</th><th>百度搜索结果总数</th><th>搜索首页出现次数</th><th class="removed-repeat">去除重复后出现次数</th></tr>
             {{#answers}}
             <tr>
                 <td>{{value}}</td>
                 <td><span id="total-score-{{index}}" class="label label-default"></span></td>
                 <td><span id="search-score-{{index}}" class="label label-default"></span></td>
+                <td class="removed-repeat"><span id="removed-score-{{index}}" class="label label-default"></span></td>
             </tr>
             {{/answers}}
         </table>
