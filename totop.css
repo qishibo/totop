@@ -34,6 +34,11 @@ ul li{
     font-size: 100%;
 }
 
+#iframe-page{
+    height: 1800px;
+    width: 100%;
+}
+
 .removed-repeat{
     display: none;
 }
@@ -44,15 +49,15 @@ ul li{
     font-weight: bold;
 }
 
-/*fix baidu iframe*/
-#iframe #head{
+/*fix baidu div-iframe*/
+#div-page #head{
     position: absolute !important;
 }
 
-#iframe .search_tool_conter{
+#div-page .search_tool_conter{
     display: none;
 }
 
-#iframe .t a{
+#div-page .t a{
     color: rgb(0, 0, 204);
 }

@@ -284,12 +284,15 @@ var qii404 = {
      * 渲染下部搜索页面
      */
     renderSearchPage: function(question) {
+        $('#iframe-page').attr('src', this.getSearchUrl(question));
+        return;
+
         var this_ = this;
-        // $('#iframe').attr('src', this.getSearchUrl(question));
+
         $.get(this.getSearchUrl(question), function(html) {
             html = html.replace('//www.baidu.com/img/baidu_jgylogo3.gif', 'http://www.baidu.com/img/baidu_jgylogo3.gif');
             html = html.replace(this_.getAnswersPreg(), '<span class="highlight-answer">$1</span>');
-            $('#iframe').html(html);
+            $('#div-page').html(html);
         });
     },
 
