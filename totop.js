@@ -128,8 +128,7 @@ var qii404 = {
             data = JSON.parse(data.slice(3,-1));
             console.log(data);
 
-            var data = JSON.parse(data.result[data.result.length - 1]);
-
+            data = JSON.parse(data.result[data.result.length - 1]);
             if (!(data.title && data.title != this_.question)) {
                 return;
             }
@@ -199,7 +198,69 @@ var qii404 = {
 
                 $('#search-score-' + i).html(num);
             }
+
+            var removedRepeat = this_.removeRepeat();
+            if (removedRepeat) {
+                $('.removed-repeat').show();
+                for (var i = 0; i < removedRepeat.length; i++) {
+                    var matches = html.match(new RegExp(this_.trimSymble(removedRepeat[i]), 'ig'));
+                    var num = matches ? matches.length : 0;
+
+                    $('#removed-score-' + i).html(removedRepeat[i] + ' ' + num);
+                }
+            }
         });
+    },
+
+    /**
+     * 去除选项中的重复内容
+     */
+    removeRepeat: function() {
+        var diff = false;
+        var len  = this.answers[0].value.length;
+        var arr  = [this.answers[0].value.split('')];
+
+        for (var i = 1; i < this.answers.length; i++) {
+            if (this.answers[i].value.length != len) {
+                diff = true;
+                break;
+            }
+            arr.push(this.answers[i].value.split(''));
+        }
+
+        if (!diff) {
+            var indexes = [];
+            for (var i = 0; i < len; i++) {
+                if (
+                    arr[0][i] == arr[1][i] &&
+                    arr[1][i] == arr[2][i]
+                ) {
+                    indexes.push(i);
+                }
+            };
+
+            if (indexes == '') {
+                return false;
+            }
+
+            var count = 0;
+            for (var k = 0; k < indexes.length; k++) {
+                arr[0].splice(indexes[k] - count, 1);
+                arr[1].splice(indexes[k] - count, 1);
+                arr[2].splice(indexes[k] - count, 1);
+                count++;
+            };
+
+            arr[0] = arr[0].join('');
+            arr[1] = arr[1].join('');
+            arr[2] = arr[2].join('');
+
+            console.log(arr);
+
+            return arr;
+        }
+
+        return false;
     },
 
     /**

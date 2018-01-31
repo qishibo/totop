@@ -38,3 +38,7 @@ ul li{
 #recomment-result{
     font-size: 100%;
 }
+
+.removed-repeat{
+    display: none;
+}
