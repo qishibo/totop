@@ -8,28 +8,31 @@
 </head>
 <body>
 
-<div class="alert alert-info">答题小助手，支持市面上大多数答题APP，祝你早日冲顶~ <small><a href="desc.html" class="label label-danger" target="_blank">使用必读</a></small></div>
+<div id="head-container">
+    <div class="alert alert-info">答题小助手，支持市面上大多数答题APP，祝你早日冲顶~ <small><a href="desc.html" class="label label-danger" target="_blank">使用必读</a></small></div>
 
-<p>
-    <select id="app-type" style="width: 20%" class="form-control btn btn-success">
-        <option value="">请选择答题APP</option>
-        <option value="cddh">冲顶大会</option>
-        <option value="xigua">西瓜百万英雄</option>
-        <option value="huajiao">花椒百万赢家</option>
-        <option value="zscr">芝士超人</option>
-        <option value="hjsm">黄金十秒</option>
-    </select>
-</p>
+    <p>
+        <select id="app-type" style="width: 20%" class="form-control btn btn-success">
+            <option value="">请选择答题APP</option>
+            <option value="cddh">冲顶大会</option>
+            <option value="xigua">西瓜百万英雄</option>
+            <option value="huajiao">花椒百万赢家</option>
+            <option value="zscr">芝士超人</option>
+            <option value="hjsm">黄金十秒</option>
+        </select>
+    </p>
 
-<div id="question-container"></div>
+    <div id="question-container"></div>
 
-<div id="control-button">
-    <button id="stop" class="btn btn-info hidden">暂停一下，我看看结果</button>&nbsp;
-    <button id="start" class="btn btn-info hidden">继续自动刷新题目</button>
-    <small><span id="status">刷新中</span>...共计<span id="counter">0</span>次，如果页面没有变化说明新题目还未到达</small>
+    <div id="control-button">
+        <button id="stop" class="btn btn-info hidden">暂停一下，我看看结果</button>&nbsp;
+        <button id="start" class="btn btn-info hidden">继续自动刷新题目</button>
+        <small><span id="status">刷新中</span>...共计<span id="counter">0</span>次，如果页面没有变化说明新题目还未到达</small>
+    </div>
 </div>
 
-<iframe id="iframe"></iframe>
+<!-- <iframe id="iframe"></iframe> -->
+<div id="iframe" ></div>
 
 <script type="text/template" id="question-template">
     <div>

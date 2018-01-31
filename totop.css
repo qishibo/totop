@@ -1,4 +1,4 @@
-body{
+#head-container{
     text-align: center !important;
 }
 
@@ -22,11 +22,6 @@ ul li{
     padding: 4px;
 }
 
-#iframe{
-    height: 1800px;
-    width: 100%;
-}
-
 #question-container{
     margin-bottom: 20px;
 }
@@ -41,4 +36,23 @@ ul li{
 
 .removed-repeat{
     display: none;
+}
+
+/*highlight answer*/
+.highlight-answer{
+    color: black !important;
+    font-weight: bold;
+}
+
+/*fix baidu iframe*/
+#iframe #head{
+    position: absolute !important;
+}
+
+#iframe .search_tool_conter{
+    display: none;
+}
+
+#iframe .t a{
+    color: rgb(0, 0, 204);
 }

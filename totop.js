@@ -148,7 +148,7 @@ var qii404 = {
      */
     formatData: function(data) {
         for (var i = 0; i < data.answers.length; i++) {
-            data.answers[i] = {index: i, value: data.answers[i]}
+            data.answers[i] = {index: i, value: data.answers[i].trim()}
         }
 
         return data;
@@ -284,7 +284,26 @@ var qii404 = {
      * 渲染下部搜索页面
      */
     renderSearchPage: function(question) {
-        $('#iframe').attr('src', this.getSearchUrl(question));
+        var this_ = this;
+        // $('#iframe').attr('src', this.getSearchUrl(question));
+        $.get(this.getSearchUrl(question), function(html) {
+            html = html.replace('//www.baidu.com/img/baidu_jgylogo3.gif', 'http://www.baidu.com/img/baidu_jgylogo3.gif');
+            html = html.replace(this_.getAnswersPreg(), '<span class="highlight-answer">$1</span>');
+            $('#iframe').html(html);
+        });
+    },
+
+    /**
+     * 获取答案正则
+     */
+    getAnswersPreg: function() {
+        var preg = [];
+
+        for (var i = 0; i < this.answers.length; i++) {
+            preg.push(this.answers[i].value);
+        }
+
+        return new RegExp('(' + preg.join('|') + ')', 'ig');
     },
 
     /**
