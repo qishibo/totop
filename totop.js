@@ -13,7 +13,8 @@ var qii404 = {
      * 题目url
      */
     // questionUrl: 'http://wd.sa.sogou.com/api/ans?key=',
-    questionUrl: 'http://140.143.49.31/api/ans2?wdcallback=xx&key=',
+    // questionUrl: 'http://140.143.49.31/api/ans2?wdcallback=xx&key=',
+    questionUrl: 'https://wdpush.sogoucdn.com/api/anspush?wdcallback=xx&key=',
 
     /**
      * 搜索链接
@@ -46,6 +47,8 @@ var qii404 = {
      */
     preApp: 'cddh',
 
+    base64Handler: null,
+
     /**
      * 当前题目
      */
@@ -60,6 +63,7 @@ var qii404 = {
      * 初始化
      */
     init: function() {
+        this.base64Handler = new Base64();
         this.bindChangeApp();
         // this.bindButton();
         this.runTimer();
@@ -126,8 +130,7 @@ var qii404 = {
 
         $.get(this.getQuestionUrl(), function(data) {
             data = JSON.parse(data.slice(3,-1));
-            console.log(data);
-
+            data.result = JSON.parse(this_.base64Handler.decode(data.result));
             data = JSON.parse(data.result[data.result.length - 1]);
             if (!(data.title && data.title != this_.question)) {
                 return;
