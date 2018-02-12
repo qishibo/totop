@@ -3,14 +3,14 @@
     "description": "答题小助手，支持市面上大多数答题APP如冲顶大会，百万英雄，花椒直播，芝士超人，祝你早日冲顶~",
     "version": "0.0.9",
     "manifest_version": 2,
-    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+    "content_security_policy": "script-src https://*.qii404.me 'self'; object-src 'self'",
     "permissions" : ["tabs","webRequest","webRequestBlocking","*://*/*"],
     "content_scripts":[{
         "matches":["http://*/*", "http://*/", "https://*/*", "https://*/"],
         "js":["jquery.js"]
     }],
     "background": {
-        "scripts": ["background.js"]
+        "page": "background.html"
     },
     "icons": {
       "16": "16.png",

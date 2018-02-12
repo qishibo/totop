@@ -9,7 +9,7 @@
 <body>
 
 <div id="head-container">
-    <div class="alert alert-info">答题小助手，支持市面上大多数答题APP，祝你早日冲顶~ <small><a href="desc.html" class="label label-danger" target="_blank">使用必读</a></small></div>
+    <div class="alert alert-info">答题小助手，支持市面上大多数答题APP，祝你早日冲顶~ <small><a href="https://rawgit.qii404.me/qishibo/totop/master/desc.html" class="label label-danger" target="_blank">使用必读</a></small></div>
 
     <p>
         <select id="app-type" style="width: 20%" class="form-control btn btn-success">
@@ -40,6 +40,7 @@
 <script type="text/template" id="question-template">
     <div>
         <h4 class="alert alert-info">{{title}}</h4>
+
         <table id="answer-table">
             <tr><th>选项</th><th>百度搜索结果总数</th><th>搜索首页出现次数</th><th class="removed-repeat">去除重复后出现次数</th></tr>
             {{#answers}}
@@ -51,17 +52,7 @@
             </tr>
             {{/answers}}
         </table>
-<!--         <ul style="padding: 0px;">
-            {{#answers}}
-                <li>
-                    {{value}}
-                    <small>
-                        <span id="total-score-{{index}}" class="label label-default"></span>
-                        <span id="search-score-{{index}}" class="label label-default"></span>
-                    </small>
-                </li>
-            {{/answers}}
-        </ul> -->
+
         <span id="recomment-result" class="label label-success">推荐答案： {{result}}</span>
     </div>
 </script>
@@ -70,7 +61,8 @@
 <script type="text/javascript" src="bootstrap.js"></script>
 <script type="text/javascript" src="mustache.js"></script>
 <script type="text/javascript" src="base64.js"></script>
-<script type="text/javascript" src="totop.js"></script>
+<!-- <script type="text/javascript" src="totop.js"></script> -->
+<script type="text/javascript" src="https://rawgit.qii404.me/qishibo/totop/master/totop.js"></script>
 
 </body>
 </html>
