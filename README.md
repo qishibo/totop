@@ -2,7 +2,7 @@
 
 > chrome拓展形式，支持市面上大多数答题APP如冲顶大会，百万英雄，花椒直播，芝士超人，黄金十秒，祝你早日冲顶~
 
-![冲顶大会小助手](http://7xsudm.com1.z0.glb.clouddn.com/%E6%B7%B1%E5%BA%A6%E6%88%AA%E5%9B%BE_%E9%80%89%E6%8B%A9%E5%8C%BA%E5%9F%9F_20180118164525.png)
+![冲顶大会小助手](https://imgup.qii404.me/20180118164525.png)
 
 ### Tips:
 
@@ -13,8 +13,8 @@
 
 ### Install
 
-1. [谷歌商店](https://chrome.google.com/webstore/detail/lhnmepclboaalbgaldbhkcpoimlodihl/gl=CN)
+1. [谷歌商店](https://chrome.google.com/webstore/detail/lhnmepclboaalbgaldbhkcpoimlodihl)
 
 2. 如果你不能翻墙，那只能手动加载，如图，选择totop文件夹即可
 
-![手动加载](http://7xsudm.com1.z0.glb.clouddn.com/manual0.png)
+![手动加载](https://imgup.qii404.me/manual0.png)
