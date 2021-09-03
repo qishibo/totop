@@ -2,7 +2,7 @@
 
 > chrome拓展形式，支持市面上大多数答题APP如冲顶大会，百万英雄，花椒直播，芝士超人，黄金十秒，祝你早日冲顶~
 
-![冲顶大会小助手](https://imgup.qii404.xyz/20180118164525.png)
+![冲顶大会小助手](https://cdn.jsdelivr.net/gh/qishibo/img/202109031639547.png)
 
 ### Tips:
 
@@ -17,4 +17,4 @@
 
 2. 如果你不能翻墙，那只能手动加载，如图，选择totop文件夹即可
 
-![手动加载](https://imgup.qii404.xyz/manual0.png)
+![手动加载](https://cdn.jsdelivr.net/gh/qishibo/img/202109031640806.png)
